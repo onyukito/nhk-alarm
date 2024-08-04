@@ -1,13 +1,8 @@
 from pyPodcastParser.Podcast import Podcast
 import requests
-import pickle
 import os
 import time
 from datetime import datetime
-from playsound import playsound
-
-
-LIST_FILE = "existing_list.pickle"
 
 
 def get_list():
@@ -36,11 +31,11 @@ def main():
             cmd = "wget {0}".format(link)
             os.system(cmd)
             os.system("mv '{0}'.mp3 nhk.mp3".format(filename))
-            playsound('nhk.mp3')
+            os.system('ffplay nhk.mp3')
 
 if __name__ == "__main__":
     while True:
-        main()
-        print('Current Time =', datetime.now().strftime("%H:%M:%S"))
-        # print('Wait for 300\n')
-        # time.sleep(300)
+        curr_time = datetime.now().strftime("%H:%M")
+        if curr_time == '19:10':
+            main()
+        time.sleep(60)
