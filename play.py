@@ -14,7 +14,7 @@ def get_list():
             break
         except:
             print('failed to get podcast info, retry in 5 mins...')
-            time.sleep(300)
+            time.sleep(60)
     
     all_items = {}
     for item in podcast.items:
@@ -36,6 +36,7 @@ def main():
 if __name__ == "__main__":
     while True:
         curr_time = datetime.now().strftime("%H:%M")
-        if curr_time == '19:10':
+        print('Current time: ', curr_time)
+        if curr_time == '07:10':
             main()
         time.sleep(60)
